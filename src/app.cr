@@ -14,9 +14,6 @@ class App
   end
 
   def run
-    # commands.each do |c|
-    #   puts c
-    # end
     DockerRunner.new(commands).run
   end
 

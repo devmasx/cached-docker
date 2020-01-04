@@ -3,11 +3,11 @@ module TemplateCommand
     [
       "docker pull #{@image_name}",
       pull_cache_steps,
+      build_cache_steps,
       "docker build #{@build_params} #{cache_froms} \
         -t #{@image_name} \
         -t #{@image_name}:#{@image_tag} \
        .",
-      build_cache_steps,
       push_cache_steps,
       "docker push #{@image_name}:#{@image_tag}",
       "docker push #{@image_name}",
