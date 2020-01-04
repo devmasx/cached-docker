@@ -1,0 +1,9 @@
+name: cached-docker
+version: 0.1.0
+
+authors:
+  - Miguel Savignano <migue.masx@gmail.com>
+
+crystal: 0.32.1
+
+license: MIT
