@@ -1,25 +1,60 @@
 require "./app"
-require "cli"
+require "commander"
+require "./vendor/commander"
 
-class CliApp < Cli::Command
-  class Help
-    header "Cached Docker"
+cli = Commander::Command.new do |cmd|
+  cmd.use = "Cached Docker"
+
+  cmd.flags.add do |flag|
+    flag.name = "image_name"
+    flag.short = "-i"
+    flag.long = "--image-name"
+    flag.default = ""
+    flag.description = "Image name without tag"
   end
 
-  class Options
-    string "--image-name"
-    string "--image-tag", default: ""
-    string "--cache-stage-target", default: ""
-    string "--build-params", default: ""
+  cmd.flags.add do |flag|
+    flag.name = "image_tag"
+    flag.short = "-t"
+    flag.long = "--image-tag"
+    flag.default = ""
+    flag.description = "Image tag (Default Time in unix seconds)"
   end
 
-  def run
+  cmd.flags.add do |flag|
+    flag.name = "build_params"
+    flag.long = "--build-params"
+    flag.default = ""
+    flag.description = "1"
+  end
+
+  cmd.flags.add do |flag|
+    flag.name = "cache_stage_target"
+    flag.long = "--cache-stage-target"
+    flag.default = ""
+    flag.description = "1"
+  end
+
+  cmd.flags.add do |flag|
+    flag.name = "dockerfile_path"
+    flag.long = "--file"
+    flag.short = "-f"
+    flag.default = ""
+    flag.description = "Name of the Dockerfile (Default is 'PATH/Dockerfile')"
+  end
+
+  cmd.run do |options, arguments|
+    if options.string["image_name"] == ""
+      raise "--image-name is required"
+    end
+
     App.new(
-      args.image_name,
-      args.image_tag,
-      ""
+      options.string["image_name"],
+      options.string["image_tag"],
+      options.string["build_params"],
+      options.string["cache_stage_target"],
+      options.string["dockerfile_path"],
     ).run
   end
 end
-
-CliApp.run(ARGV)
+Commander.run(cli, ARGV)

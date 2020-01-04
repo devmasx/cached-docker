@@ -7,8 +7,8 @@ authors:
 crystal: 0.32.1
 
 dependencies:
-  cli:
-    # github: mosop/cli
-    github: bcardiff/cli
-    branch: bcardiff/use-fork
+  commander:
+    github: mrrooijen/commander
+    version: ~> 0.3.4
+
 license: MIT

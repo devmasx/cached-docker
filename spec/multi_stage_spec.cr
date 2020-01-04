@@ -5,7 +5,7 @@ class Dummy
 
   def initialize
     @image_name = "gcr.io/docker-rails-258302/rails-sqlite"
-    @docker_file_path = "./Dockerfile"
+    @dockerfile_path = "./Dockerfile"
     @cache_stage_target = ""
   end
 end
