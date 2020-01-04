@@ -9,7 +9,7 @@ class App
 
   def initialize(@image_name = "", @image_tag = "", @build_params = "", @cache_stage_target = "")
     @docker_file_path = "./Dockerfile"
-    # @image_tag = "12345678912312" if @image_tag == ""
+    @image_tag = Time.utc.to_unix.to_s if @image_tag == ""
     @cache_stages = cache_stages
   end
 
