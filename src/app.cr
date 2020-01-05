@@ -6,6 +6,7 @@ class App
   include TemplateCommand
   include CachedStages
   @cache_stages : Array(Hash(String, String))
+  getter :image_tag, :dockerfile_path, :build_params
 
   def initialize(@image_name = "", @image_tag = "", @build_params = "", @cache_stage_target = "", @dockerfile_path = "")
     if @dockerfile_path == ""
