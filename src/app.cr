@@ -7,14 +7,22 @@ class App
   include CachedStages
   @cache_stages : Array(Hash(String, String))
 
-  def initialize(@image_name = "", @image_tag = "", @build_params = "", @cache_stage_target = "", @docker_file_path = "")
-    @docker_file_path = "./Dockerfile" if @docker_file_path == ""
+  def initialize(@image_name = "", @image_tag = "", @build_params = "", @cache_stage_target = "", @dockerfile_path = "")
+    if @dockerfile_path == ""
+      @dockerfile_path = "./Dockerfile"
+    else
+      @build_params = "#{@build_params} -f #{@dockerfile_path}"
+    end
+
     @image_tag = Time.utc.to_unix.to_s if @image_tag == ""
     @cache_stages = cache_stages
   end
 
   def run
-    DockerRunner.new(commands).run
+    commands.each do |command|
+      puts command
+    end
+    # DockerRunner.new(commands).run
   end
 
   def multistage?

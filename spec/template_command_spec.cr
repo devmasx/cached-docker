@@ -5,7 +5,7 @@ class Service
 
   def initialize
     @image_name = "gcr.io/docker-rails-258302/rails-sqlite"
-    @docker_file_path = "./spec/fixtures/Dockerfile.dev"
+    @dockerfile_path = "./spec/fixtures/Dockerfile.dev"
     @cache_stage_target = ""
     @image_tag = "v1"
     @build_params = ""
