@@ -1,6 +1,5 @@
 require "./app"
 require "commander"
-require "./vendor/commander"
 
 cli = Commander::Command.new do |cmd|
   cmd.use = "Cached Docker"
@@ -25,14 +24,14 @@ cli = Commander::Command.new do |cmd|
     flag.name = "build_params"
     flag.long = "--build-params"
     flag.default = ""
-    flag.description = "1"
+    flag.description = "Add any docker build flag, --build-params=\"--build-arg=TOKEN=$TOKEN\""
   end
 
   cmd.flags.add do |flag|
     flag.name = "cache_stage_target"
     flag.long = "--cache-stage-target"
     flag.default = ""
-    flag.description = "1"
+    flag.description = "Name of the stage target for use in cache, two images will be compiled, the stage target and the last stage"
   end
 
   cmd.flags.add do |flag|

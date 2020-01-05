@@ -9,7 +9,7 @@ TODO: Write a description here
    ```yaml
    dependencies:
      cached-docker:
-       github: your-github-user/cached-docker
+       github: devmasx/cached-docker
    ```
 
 2. Run `shards install`
