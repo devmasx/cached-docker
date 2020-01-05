@@ -1,4 +1,4 @@
-module TemplateCommand
+module CachedDocker::TemplateCommand
   def commands
     [
       "docker pull #{@image_name}",

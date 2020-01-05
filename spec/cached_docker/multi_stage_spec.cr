@@ -1,7 +1,7 @@
-require "./spec_helper"
+require "../spec_helper"
 
 class Dummy
-  include CachedStages
+  include CachedDocker::CachedStages
 
   def initialize
     @image_name = "gcr.io/docker-rails-258302/rails-sqlite"
@@ -10,7 +10,7 @@ class Dummy
   end
 end
 
-describe CachedStages do
+describe CachedDocker::CachedStages do
   it "#commands" do
     subject = Dummy.new
     subject.cache_stages.should eq([{"name" => "gcr.io/docker-rails-258302/rails-sqlite:cache-build", "target" => "build"}])

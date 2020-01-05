@@ -1,16 +1,16 @@
-FROM node:lts-alpine as build
+FROM crystallang/crystal as build
 
 WORKDIR /app
-COPY package.json package-lock.json /app/
-RUN npm ci
+COPY shard.yml  /app/
+RUN shards install
+
+RUN crystal build src/cached_docker.cr
 
 COPY . .
 
-CMD ["sh"]
-
-FROM node:lts-alpine
+FROM alpine
 WORKDIR /app
 
-COPY --from=build /app /app
+COPY --from=build /app/cached_docker /app/cached_docker
 
-CMD ["sh"]
+ENTRYPOINT [ "cached_docker" ]

@@ -1,4 +1,4 @@
-class DockerRunner
+class CachedDocker::DockerRunner
   def initialize(@commands : Array(String))
   end
 

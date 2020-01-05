@@ -1,4 +1,4 @@
-module CachedStages
+module CachedDocker::CachedStages
   def cache_stages : Array(Hash(String, String))
     if @cache_stage_target && !@cache_stage_target.empty?
       [{

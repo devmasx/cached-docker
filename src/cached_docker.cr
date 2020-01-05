@@ -1,4 +1,4 @@
-require "./app"
+require "./cached_docker/app"
 require "commander"
 
 cli = Commander::Command.new do |cmd|
@@ -47,7 +47,7 @@ cli = Commander::Command.new do |cmd|
       raise "--image-name is required"
     end
 
-    App.new(
+    CachedDocker::App.new(
       options.string["image_name"],
       options.string["image_tag"],
       options.string["build_params"],

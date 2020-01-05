@@ -1,8 +1,8 @@
-require "./spec_helper"
+require "../spec_helper"
 
-describe App do
+describe CachedDocker::App do
   it "#commands" do
-    subject = App.new(
+    subject = CachedDocker::App.new(
       "crystal-dev",
       "v1",
       ""
@@ -19,7 +19,7 @@ describe App do
   end
 
   it "#initialize set default values" do
-    subject = App.new(
+    subject = CachedDocker::App.new(
       "crystal-dev",
       "",
       "--build-arg=NPM_TOKEN=1234",
@@ -32,7 +32,7 @@ describe App do
   end
 
   it "#commands" do
-    subject = App.new(
+    subject = CachedDocker::App.new(
       "crystal-dev",
       "v1",
       "--build-arg=NPM_TOKEN=1234",

@@ -2,7 +2,7 @@ require "./template_command"
 require "./docker_runner"
 require "./multi_stage"
 
-class App
+class CachedDocker::App
   include TemplateCommand
   include CachedStages
   @cache_stages : Array(Hash(String, String))

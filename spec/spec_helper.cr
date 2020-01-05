@@ -1,4 +1,4 @@
 require "spec"
-require "../src/app"
-require "../src/multi_stage"
-require "../src/template_command"
+require "../src/cached_docker/app"
+require "../src/cached_docker/multi_stage"
+require "../src/cached_docker/template_command"

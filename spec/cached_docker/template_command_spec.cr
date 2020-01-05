@@ -1,7 +1,7 @@
-require "./spec_helper"
+require "../spec_helper"
 
 class Service
-  include TemplateCommand
+  include CachedDocker::TemplateCommand
 
   def initialize
     @image_name = "gcr.io/docker-rails-258302/rails-sqlite"
@@ -17,7 +17,7 @@ class Service
   end
 end
 
-describe TemplateCommand do
+describe CachedDocker::TemplateCommand do
   it "#commands" do
     subject = Service.new
     subject.commands.should eq([

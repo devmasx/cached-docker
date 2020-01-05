@@ -1,10 +1,9 @@
-name: CI
+name: Crystal shard
 
 on:
   push:
     branches:
-      - master
-
+      - "*"
 jobs:
   example:
     runs-on: ubuntu-16.04
@@ -14,7 +13,9 @@ jobs:
           crystal_version: 0.31.1
           shards_version: 0.9.0
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run Crystal
-        run: |
-          echo 'puts "Hello Crystal"' > hello.cr
-          crystal run hello.cr
+      - name: Install dependencies
+        run: shards install
+      - name: Build
+        run: crystal build src/cached_docker.cr
+      - name: Test
+        run: crystal spec
