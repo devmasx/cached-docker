@@ -1,4 +1,5 @@
 require "./cached_docker/app"
+require "./cached_docker/version"
 require "commander"
 
 cli = Commander::Command.new do |cmd|
@@ -42,18 +43,29 @@ cli = Commander::Command.new do |cmd|
     flag.description = "Name of the Dockerfile (Default is 'PATH/Dockerfile')"
   end
 
-  cmd.run do |options, arguments|
-    if options.string["image_name"] == ""
-      raise "--image-name is required"
-    end
+  cmd.flags.add do |flag|
+    flag.name = "version"
+    flag.long = "--version"
+    flag.short = "-v"
+    flag.default = false
+    flag.description = "Version"
+  end
 
-    CachedDocker::App.new(
-      options.string["image_name"],
-      options.string["image_tag"],
-      options.string["build_params"],
-      options.string["cache_stage_target"],
-      options.string["dockerfile_path"],
-    ).run
+  cmd.run do |options, arguments|
+    if options.bool["version"] != ""
+      puts CachedDocker::VERSION
+    elsif options.string["image_name"] == ""
+      puts "--image-name is required"
+      puts cmd.help
+    else
+      CachedDocker::App.new(
+        options.string["image_name"],
+        options.string["image_tag"],
+        options.string["build_params"],
+        options.string["cache_stage_target"],
+        options.string["dockerfile_path"],
+      ).run
+    end
   end
 end
 Commander.run(cli, ARGV)
