@@ -20,7 +20,7 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr
+        run: crystal build src/cached_docker.cr --release --no-debug
 
       - name: Test
         run: crystal spec
