@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  example:
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: MeilCli/setup-crystal-action@v1
+        with:
+          crystal_version: 0.31.1
+          shards_version: 0.9.0
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Crystal
+        run: |
+          echo 'puts "Hello Crystal"' > hello.cr
+          crystal run hello.cr
