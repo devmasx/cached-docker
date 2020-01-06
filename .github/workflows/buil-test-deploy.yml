@@ -22,5 +22,8 @@ jobs:
       - name: Build
         run: crystal build src/cached_docker.cr --release --no-debug
 
+      - name: Build
+        run: ./cached_docker --version
+
       - name: Test
         run: crystal spec
