@@ -27,3 +27,8 @@ jobs:
 
       - name: Test
         run: crystal spec
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: cached-docker-bin
+          path: cached_docker
