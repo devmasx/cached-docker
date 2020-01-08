@@ -52,7 +52,7 @@ cli = Commander::Command.new do |cmd|
   end
 
   cmd.run do |options, arguments|
-    if options.bool["version"] != ""
+    if options.bool["version"]
       puts CachedDocker::VERSION
     elsif options.string["image_name"] == ""
       puts "--image-name is required"

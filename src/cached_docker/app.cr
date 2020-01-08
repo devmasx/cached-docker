@@ -23,7 +23,7 @@ class CachedDocker::App
     commands.each do |command|
       puts command
     end
-    # DockerRunner.new(commands).run
+    DockerRunner.new(commands).run
   end
 
   def multistage?
