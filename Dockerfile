@@ -11,7 +11,7 @@ RUN shards install
 COPY . .
 RUN crystal build src/cached_docker.cr -o /bin/cached-docker
 
-CMD ["bash"]
+CMD ["sh"]
 
 # ===============================
 
