@@ -9,10 +9,10 @@ describe CachedDocker::App do
     )
     subject.commands.should eq([
       "docker pull crystal-dev",
-      "docker pull crystal-dev:cache-build",
-      "docker build  --cache-from=crystal-dev:cache-build --cache-from=crystal-dev --target build .",
-      "docker build  --cache-from=crystal-dev:cache-build --cache-from=crystal-dev -t crystal-dev -t crystal-dev:v1 .",
-      "docker push crystal-dev:cache-build",
+      "docker pull crystal-dev:cache-builder",
+      "docker build  --cache-from=crystal-dev:cache-builder --cache-from=crystal-dev --target builder .",
+      "docker build  --cache-from=crystal-dev:cache-builder --cache-from=crystal-dev -t crystal-dev -t crystal-dev:v1 .",
+      "docker push crystal-dev:cache-builder",
       "docker push crystal-dev:v1",
       "docker push crystal-dev",
     ])
@@ -42,10 +42,10 @@ describe CachedDocker::App do
 
     subject.commands.should eq([
       "docker pull crystal-dev",
-      "docker pull crystal-dev:cache-build",
-      "docker build --build-arg=NPM_TOKEN=1234 -f Dockerfile --cache-from=crystal-dev:cache-build --cache-from=crystal-dev --target build .",
-      "docker build --build-arg=NPM_TOKEN=1234 -f Dockerfile --cache-from=crystal-dev:cache-build --cache-from=crystal-dev -t crystal-dev -t crystal-dev:v1 .",
-      "docker push crystal-dev:cache-build",
+      "docker pull crystal-dev:cache-builder",
+      "docker build --build-arg=NPM_TOKEN=1234 -f Dockerfile --cache-from=crystal-dev:cache-builder --cache-from=crystal-dev --target builder .",
+      "docker build --build-arg=NPM_TOKEN=1234 -f Dockerfile --cache-from=crystal-dev:cache-builder --cache-from=crystal-dev -t crystal-dev -t crystal-dev:v1 .",
+      "docker push crystal-dev:cache-builder",
       "docker push crystal-dev:v1",
       "docker push crystal-dev",
     ])
