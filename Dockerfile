@@ -1,17 +1,23 @@
-FROM crystallang/crystal:0.32.1 as build
+FROM docker:19.03.5 as builder
+
+RUN apk add crystal shards
+RUN apk add libevent pcre libgcc musl-dev
 
 WORKDIR /app
+
 COPY shard.yml  /app/
 RUN shards install
 
 COPY . .
-RUN crystal build src/cached_docker.cr
+RUN crystal build src/cached_docker.cr -o /bin/cached-docker
 
 CMD ["bash"]
 
-FROM alpine
-WORKDIR /app
+# ===============================
 
-COPY --from=build /app/cached_docker /app/cached_docker
+FROM docker:stable
+RUN apk add libevent pcre libgcc
 
-ENTRYPOINT [ "/app/cached_docker" ]
+COPY --from=builder /bin/cached-docker /bin/cached-docker
+
+ENTRYPOINT [ "/bin/cached-docker" ]
