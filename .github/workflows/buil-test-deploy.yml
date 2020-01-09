@@ -45,7 +45,8 @@ jobs:
         with:
           name: cached-docker-alpine
           path: cached-docker
-  build-alpine:
+
+  build-ubuntu:
     runs-on: ubuntu-16.04
     needs: test
     container:
@@ -66,7 +67,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, build-alpine, build-ubuntu]
     if: contains(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@master
