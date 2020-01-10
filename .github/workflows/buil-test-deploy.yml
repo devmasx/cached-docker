@@ -68,7 +68,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [test, build-alpine, build-ubuntu]
-    if: contains(github.ref, 'refs/tags/v')
+    # if: contains(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@master
       - name: Publish to DockerHub
