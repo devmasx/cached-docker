@@ -20,4 +20,4 @@ RUN apk add libevent pcre libgcc
 
 COPY --from=builder /bin/cached-docker /bin/cached-docker
 
-ENTRYPOINT [ "/bin/cached-docker" ]
+CMD [ "/bin/cached-docker" ]
