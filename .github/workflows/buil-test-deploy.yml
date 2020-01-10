@@ -71,6 +71,7 @@ jobs:
     # if: contains(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@master
+      - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Publish to DockerHub
         uses: devmasx/cached-docker-build-push@v0.1.1
         with:
