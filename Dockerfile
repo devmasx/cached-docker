@@ -9,7 +9,7 @@ COPY shard.yml  /app/
 RUN shards install
 
 COPY . .
-RUN crystal build src/cached_docker.cr -o /bin/cached-docker
+RUN crystal build src/cached_docker.cr --release --static --no-debug -o /bin/cached-docker
 
 CMD ["sh"]
 
