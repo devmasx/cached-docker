@@ -74,6 +74,8 @@ jobs:
         run: |
           brew update
           brew install crystal
+          xcode-select --install
+          xcode-select --switch /Library/Developer/CommandLineTools
 
       - name: Install dependencies
         run: shards install
