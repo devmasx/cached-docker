@@ -65,8 +65,7 @@ jobs:
           name: cached-docker-ubuntu
           path: cached-docker
 
-
-  build-ubuntu:
+  build-macos:
     runs-on: macos-latest
     needs: test
     steps:
