@@ -39,7 +39,7 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr --release --no-debug -o cached-docker
+        run: crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
 
       - uses: actions/upload-artifact@v1
         with:
@@ -58,7 +58,7 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr --release --no-debug -o cached-docker
+        run: crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
 
       - uses: actions/upload-artifact@v1
         with:
