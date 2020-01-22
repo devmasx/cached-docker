@@ -72,6 +72,7 @@ jobs:
       - name: Install crystal
         run: |
           brew update
+          brew install libgc
           brew install openssl
           brew install crystal
 
