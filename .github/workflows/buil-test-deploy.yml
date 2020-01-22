@@ -73,6 +73,7 @@ jobs:
         run: |
           brew update
           brew install libgc
+          brew install gsl
           brew install openssl
           brew install crystal
 
@@ -80,7 +81,7 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
+        run: crystal build src/cached_docker.cr -o cached-docker
 
       - uses: actions/upload-artifact@v1
         with:
