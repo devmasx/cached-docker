@@ -72,9 +72,9 @@ jobs:
       - uses: actions/checkout@master
       - name: Install crystal
         run: |
-          xcode-select --install
           xcode-select --switch /Library/Developer/CommandLineTools
           brew update
+          brew install openssl
           brew install crystal
 
       - name: Install dependencies
