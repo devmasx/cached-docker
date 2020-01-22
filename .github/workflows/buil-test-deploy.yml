@@ -67,7 +67,6 @@ jobs:
 
   build-macos:
     runs-on: macos-latest
-    needs: test
     steps:
       - uses: actions/checkout@master
       - name: Install crystal
