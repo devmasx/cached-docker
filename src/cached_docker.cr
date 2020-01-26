@@ -51,6 +51,13 @@ cli = Commander::Command.new do |cmd|
     flag.description = "Version"
   end
 
+  cmd.flags.add do |flag|
+    flag.name = "print"
+    flag.long = "--print"
+    flag.default = false
+    flag.description = "Only print docker commands"
+  end
+
   cmd.run do |options, arguments|
     if options.bool["version"]
       puts CachedDocker::VERSION
@@ -58,13 +65,19 @@ cli = Commander::Command.new do |cmd|
       puts "--image-name is required"
       puts cmd.help
     else
-      CachedDocker::App.new(
+      app = CachedDocker::App.new(
         options.string["image_name"],
         options.string["image_tag"],
         options.string["build_params"],
         options.string["cache_stage_target"],
         options.string["dockerfile_path"],
-      ).run
+      )
+
+      if options.bool["print"]
+        app.commands.each { |command| puts command }
+      else
+        app.run
+      end
     end
   end
 end
