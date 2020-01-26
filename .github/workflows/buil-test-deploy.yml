@@ -65,6 +65,29 @@ jobs:
           name: cached-docker-ubuntu
           path: cached-docker
 
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install crystal
+        run: |
+          brew update
+          brew install libgc
+          brew install gsl
+          brew install openssl
+          brew install crystal
+
+      - name: Install dependencies
+        run: shards install
+
+      - name: Build
+        run: crystal build src/cached_docker.cr -o cached-docker
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: cached-docker-macos
+          path: cached-docker
+
   deploy:
     runs-on: ubuntu-latest
     needs: [test, build-alpine, build-ubuntu]
