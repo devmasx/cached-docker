@@ -6,7 +6,7 @@ The docker multi stages are inferred from the Dockerfile.
 
 ## Installation
 
-Download the [releases](./cached-docker)
+Download the binary [releases](./releases)
 
 ```
 sudo cp cached-docker /bin/cached-docker

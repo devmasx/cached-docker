@@ -76,4 +76,6 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Publish to DockerHub
-        run: ./releases/cached-docker -i devmasx/cached-docker -t $GITHUB_SHA
+        run: |
+          cp ./releases/linux/cached-docker /bin/cached-docker
+          cached-docker -i devmasx/cached-docker -t $GITHUB_SHA
