@@ -9,14 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-16.04
+    container:
+      image: crystallang/crystal:0.32.1
+
     steps:
       - uses: actions/checkout@master
-
-      - uses: MeilCli/setup-crystal-action@v1
-        with:
-          crystal_version: 0.31.1
-          shards_version: 0.9.0
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
         run: shards install
@@ -29,6 +26,7 @@ jobs:
     needs: test
     container:
       image: crystallang/crystal:0.32.1
+
     steps:
       - uses: actions/checkout@master
 
@@ -45,6 +43,7 @@ jobs:
 
   build-macos:
     runs-on: macos-latest
+    needs: test
     steps:
       - uses: actions/checkout@master
       - name: Install crystal
