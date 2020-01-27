@@ -31,9 +31,9 @@ cached-docker help
 |       | --build-params       | Add any docker build flag, --build-params="--build-arg=TOKEN=\$TOKEN" |                      |
 | -f    | --file               | Name of the Dockerfile                                                | 'PATH/Dockerfile'    |
 |       | --cache-stage-target | Name of the stage target for use in cache.                            |                      |
-| -h    | --help               | Help for this command.                                                | false                |
 |       | --print              | Only print docker commands                                            | false                |
 | -v    | --version            | Version                                                               |                      |
+| -h    | --help               | Help for this command.                                                | false                |
 
 Example:
 
