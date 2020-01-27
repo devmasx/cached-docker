@@ -24,28 +24,6 @@ jobs:
       - name: Test
         run: crystal spec
 
-  build-alpine:
-    runs-on: ubuntu-16.04
-    needs: test
-    container:
-      image: alpine:3.11.2
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Install system dependencies
-        run: apk add libevent pcre libgcc musl-dev crystal shards
-
-      - name: Install dependencies
-        run: shards install
-
-      - name: Build
-        run: crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: cached-docker-alpine
-          path: cached-docker
-
   build-ubuntu:
     runs-on: ubuntu-16.04
     needs: test
@@ -90,7 +68,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [test, build-alpine, build-ubuntu]
+    needs: [test, build-ubuntu]
     if: contains(github.ref, 'refs/tags/v')
     steps:
       - uses: actions/checkout@master
