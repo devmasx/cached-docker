@@ -32,7 +32,7 @@ cli = Commander::Command.new do |cmd|
     flag.name = "cache_stage_target"
     flag.long = "--cache-stage-target"
     flag.default = ""
-    flag.description = "Name of the stage target for use in cache, two images will be compiled, the stage target and the last stage"
+    flag.description = "Name of the stage target for use in cache"
   end
 
   cmd.flags.add do |flag|
