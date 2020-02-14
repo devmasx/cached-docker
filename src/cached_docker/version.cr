@@ -1,3 +1,3 @@
 module CachedDocker
-  VERSION = "v0.1.0"
+  VERSION = "v1.0.0"
 end

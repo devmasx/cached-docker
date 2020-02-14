@@ -36,6 +36,14 @@ cli = Commander::Command.new do |cmd|
   end
 
   cmd.flags.add do |flag|
+    flag.name = "push"
+    flag.long = "--push"
+    flag.short = "-p"
+    flag.default = false
+    flag.description = "push image"
+  end
+
+  cmd.flags.add do |flag|
     flag.name = "dockerfile_path"
     flag.long = "--file"
     flag.short = "-f"
@@ -71,6 +79,7 @@ cli = Commander::Command.new do |cmd|
         options.string["build_params"],
         options.string["cache_stage_target"],
         options.string["dockerfile_path"],
+        options.bool["push"]
       )
 
       if options.bool["print"]
