@@ -5,7 +5,7 @@ describe CachedDocker::App do
     subject = CachedDocker::App.new(
       "crystal-dev",
       "v1",
-      ""
+      "",
     )
     subject.commands.should eq([
       "docker pull crystal-dev",

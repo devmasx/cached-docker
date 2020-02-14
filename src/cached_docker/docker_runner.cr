@@ -1,5 +1,5 @@
 class CachedDocker::DockerRunner
-  def initialize(@commands : Array(String))
+  def initialize(@commands : Array(String), @push = true)
   end
 
   def run
