@@ -74,12 +74,14 @@ cli = Commander::Command.new do |cmd|
       puts cmd.help
     else
       app = CachedDocker::App.new(
-        options.string["image_name"],
-        options.string["image_tag"],
-        options.string["build_params"],
-        options.string["cache_stage_target"],
-        options.string["dockerfile_path"],
-        options.bool["push"]
+        {
+          image_name:         options.string["image_name"],
+          image_tag:          options.string["image_tag"],
+          push:               options.bool["push"],
+          dockerfile_path:    options.string["dockerfile_path"],
+          build_params:       options.string["build_params"],
+          cache_stage_target: options.string["cache_stage_target"],
+        }
       )
 
       if options.bool["print"]

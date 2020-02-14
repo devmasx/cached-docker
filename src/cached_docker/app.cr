@@ -9,7 +9,7 @@ class CachedDocker::App
   @push = true
   getter :image_tag, :dockerfile_path, :build_params
 
-  def initialize(@image_name = "", @image_tag = "", @build_params = "", @cache_stage_target = "", @dockerfile_path = "", @push = true)
+  def initialize(*, @image_name = "", @image_tag = "", @push = true, @build_params = "", @cache_stage_target = "", @dockerfile_path = "")
     if @dockerfile_path == ""
       @dockerfile_path = "./Dockerfile"
     else
