@@ -72,10 +72,12 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      - name: Build
+        run: crystal build src/cached_docker.cr --release --static --no-debug -o /bin/cached-docker
+
       - name: Docker login
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Publish to DockerHub
         run: |
-          cp ./releases/linux/cached-docker /bin/cached-docker
           cached-docker -i devmasx/cached-docker -t $GITHUB_SHA
