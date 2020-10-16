@@ -2,9 +2,11 @@ require "../spec_helper"
 
 class Dummy
   include CachedDocker::CachedStages
+  @image_name : String
 
   def initialize
-    @image_name = "gcr.io/docker-rails-258302/rails-sqlite"
+    @image_names = ["gcr.io/docker-rails-258302/rails-sqlite"]
+    @image_name = @image_names[0]
     @dockerfile_path = "./Dockerfile"
     @cache_stage_target = ""
   end

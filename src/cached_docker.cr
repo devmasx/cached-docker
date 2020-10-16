@@ -66,7 +66,7 @@ cli = Commander::Command.new do |cmd|
       puts cmd.help
     else
       app = CachedDocker::App.new(
-        options.string["image_name"],
+        options.string["image_name"].split(","),
         options.string["image_tag"],
         options.string["build_params"],
         options.string["cache_stage_target"],

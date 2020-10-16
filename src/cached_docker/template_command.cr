@@ -4,14 +4,17 @@ module CachedDocker::TemplateCommand
       "docker pull #{@image_name}",
       pull_cache_steps,
       build_cache_steps,
-      "docker build #{@build_params} #{cache_froms} \
-        -t #{@image_name} \
-        -t #{@image_name}:#{@image_tag} \
-       .",
+      "docker build #{@build_params} #{cache_froms} #{image_tags} .",
       push_cache_steps,
       "docker push #{@image_name}:#{@image_tag}",
       "docker push #{@image_name}",
     ].flatten
+  end
+
+  def image_tags
+    @image_names.map do |image_name|
+      "-t #{image_name} -t #{image_name}:#{@image_tag}"
+    end.join(" ")
   end
 
   def cache_froms
