@@ -41,6 +41,10 @@ jobs:
           name: cached-docker-ubuntu
           path: cached-docker
 
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: Store linux release
+
   build-macos:
     runs-on: macos-latest
     needs: test
@@ -64,6 +68,10 @@ jobs:
         with:
           name: cached-docker-macos
           path: cached-docker
+
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: Store Maxos release
 
   deploy:
     runs-on: ubuntu-latest
