@@ -42,6 +42,7 @@ jobs:
           path: cached-docker
 
       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        if: contains(github.ref, 'refs/tags/v')
         with:
           commit_message: Store linux release
 
@@ -70,22 +71,6 @@ jobs:
           path: cached-docker
 
       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        if: contains(github.ref, 'refs/tags/v')
         with:
-          commit_message: Store Maxos release
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [test, build-ubuntu]
-    if: contains(github.ref, 'refs/tags/v')
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Build
-        run: crystal build src/cached_docker.cr --release --static --no-debug -o /bin/cached-docker
-
-      - name: Docker login
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-
-      - name: Publish to DockerHub
-        run: |
-          cached-docker -i devmasx/cached-docker -t $GITHUB_SHA
+          commit_message: Store macOS release
