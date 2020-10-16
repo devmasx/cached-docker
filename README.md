@@ -39,8 +39,9 @@ cached-docker help
 | -i    | --image-name         | Image name without tag or image names separated by comma              |                      |
 | -t    | --image-tag          | Image tag                                                             | Time in unix seconds |
 |       | --build-params       | Add any docker build flag, --build-params="--build-arg=TOKEN=\$TOKEN" |                      |
-| -f    | --file               | Name of the Dockerfile                                                | 'PATH/Dockerfile'    |
-|       | --cache-stage-target | Name of the stage target for use in cache. default first stage        |                      |
+| -f    | --file               | Name of the Dockerfile                                                | ./Dockerfile         |
+| -c    | --context            | Docker context (path of source code)                                  | .                    |
+|       | --cache-stage-target | Name of the stage target for use in cache.                            | first stage          |
 |       | --print              | Only print docker commands                                            | false                |
 | -v    | --version            | Version                                                               |                      |
 | -h    | --help               | Help for this command.                                                | false                |
