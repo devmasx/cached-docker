@@ -9,6 +9,7 @@ class Dummy
     @image_name = @image_names[0]
     @dockerfile_path = "./Dockerfile"
     @cache_stage_target = ""
+    @docker_context = "."
   end
 end
 

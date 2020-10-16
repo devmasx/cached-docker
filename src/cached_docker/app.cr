@@ -13,7 +13,8 @@ class CachedDocker::App
   def initialize(*,
                  @image_names = [""], @image_tag = "",
                  @push = true, @build_params = "",
-                 @cache_stage_target = "", @dockerfile_path = "./Dockerfile")
+                 @cache_stage_target = "", @dockerfile_path = "./Dockerfile",
+                 @docker_context = ".")
     @image_name = @image_names[0]
     if @dockerfile_path != "./Dockerfile"
       @build_params = "#{@build_params} -f #{@dockerfile_path}"

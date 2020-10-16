@@ -48,7 +48,15 @@ cli = Commander::Command.new do |cmd|
     flag.long = "--file"
     flag.short = "-f"
     flag.default = "./Dockerfile"
-    flag.description = "Name of the Dockerfile (Default is 'PATH/Dockerfile')"
+    flag.description = "Name of the Dockerfile"
+  end
+
+  cmd.flags.add do |flag|
+    flag.name = "docker_context"
+    flag.long = "--context"
+    flag.short = "-c"
+    flag.default = "."
+    flag.description = "Docker context (path of source code)"
   end
 
   cmd.flags.add do |flag|
@@ -80,6 +88,7 @@ cli = Commander::Command.new do |cmd|
         dockerfile_path: options.string["dockerfile_path"],
         build_params: options.string["build_params"],
         cache_stage_target: options.string["cache_stage_target"],
+        docker_context: options.string["docker_context"],
       )
 
       if options.bool["print"]

@@ -3,12 +3,24 @@ module CachedDocker::TemplateCommand
 
   def commands
     [
-      "docker pull #{@image_name}",
-      pull_cache_steps,
-      build_cache_steps,
-      "docker build #{@build_params} #{cache_froms} #{image_tags} .",
+      pull_commands,
+      build_commands,
       @push ? push_commands : [] of String,
     ].flatten
+  end
+
+  def build_commands
+    [
+      build_cache_steps,
+      "docker build #{@build_params} #{cache_froms} #{image_tags} #{@docker_context}",
+    ]
+  end
+
+  def pull_commands
+    [
+      "docker pull #{@image_name}",
+      pull_cache_steps,
+    ]
   end
 
   def push_commands
@@ -40,7 +52,7 @@ module CachedDocker::TemplateCommand
 
   def build_cache_steps
     @cache_stages.map do |stage|
-      "docker build #{@build_params} #{cache_froms} --target #{stage["target"]} ."
+      "docker build #{@build_params} #{cache_froms} --target #{stage["target"]} #{@docker_context}"
     end
   end
 end
