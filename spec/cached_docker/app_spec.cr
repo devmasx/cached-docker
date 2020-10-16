@@ -3,7 +3,7 @@ require "../spec_helper"
 describe CachedDocker::App do
   it "#commands" do
     subject = CachedDocker::App.new(
-      image_name: "crystal-dev",
+      image_names: ["crystal-dev"],
       image_tag: "v1",
     )
     subject.commands.should eq([
@@ -19,7 +19,7 @@ describe CachedDocker::App do
 
   it "#initialize set default values" do
     subject = CachedDocker::App.new(
-      image_name: "crystal-dev",
+      image_names: ["crystal-dev"],
       image_tag: "",
       build_params: "--build-arg=NPM_TOKEN=1234",
       dockerfile_path: "Dockerfile"
@@ -31,7 +31,7 @@ describe CachedDocker::App do
 
   it "#commands" do
     subject = CachedDocker::App.new(
-      image_name: "crystal-dev",
+      image_names: ["crystal-dev"],
       image_tag: "v1",
       build_params: "--build-arg=NPM_TOKEN=1234",
       dockerfile_path: "Dockerfile"

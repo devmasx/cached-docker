@@ -74,7 +74,7 @@ cli = Commander::Command.new do |cmd|
       puts cmd.help
     else
       app = CachedDocker::App.new(
-        image_name: options.string["image_name"],
+        image_names: options.string["image_name"].split(",").map &.strip,
         image_tag: options.string["image_tag"],
         push: options.bool["push"],
         dockerfile_path: options.string["dockerfile_path"],
