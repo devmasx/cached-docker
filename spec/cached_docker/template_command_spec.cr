@@ -11,6 +11,7 @@ class Service
     @cache_stage_target = ""
     @image_tag = "v1"
     @build_params = ""
+    @docker_context = "."
     @cache_stages = [] of String
     @cache_stages = [
       {"name" => "gcr.io/docker-rails-258302/rails-sqlite:cache-build", "target" => "build"},
