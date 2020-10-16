@@ -3,9 +3,8 @@ require "../spec_helper"
 describe CachedDocker::App do
   it "#commands" do
     subject = CachedDocker::App.new(
-      ["crystal-dev"],
-      "v1",
-      ""
+      image_names: ["crystal-dev"],
+      image_tag: "v1",
     )
     subject.commands.should eq([
       "docker pull crystal-dev",
@@ -20,11 +19,10 @@ describe CachedDocker::App do
 
   it "#initialize set default values" do
     subject = CachedDocker::App.new(
-      ["crystal-dev"],
-      "",
-      "--build-arg=NPM_TOKEN=1234",
-      "",
-      "Dockerfile"
+      image_names: ["crystal-dev"],
+      image_tag: "",
+      build_params: "--build-arg=NPM_TOKEN=1234",
+      dockerfile_path: "Dockerfile"
     )
     subject.image_tag.should eq(Time.utc.to_unix.to_s)
     subject.dockerfile_path.should eq("Dockerfile")
@@ -33,11 +31,10 @@ describe CachedDocker::App do
 
   it "#commands" do
     subject = CachedDocker::App.new(
-      ["crystal-dev"],
-      "v1",
-      "--build-arg=NPM_TOKEN=1234",
-      "",
-      "Dockerfile"
+      image_names: ["crystal-dev"],
+      image_tag: "v1",
+      build_params: "--build-arg=NPM_TOKEN=1234",
+      dockerfile_path: "Dockerfile"
     )
 
     subject.commands.should eq([

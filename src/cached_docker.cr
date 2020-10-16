@@ -36,10 +36,18 @@ cli = Commander::Command.new do |cmd|
   end
 
   cmd.flags.add do |flag|
+    flag.name = "push"
+    flag.long = "--push"
+    flag.short = "-p"
+    flag.default = false
+    flag.description = "push image"
+  end
+
+  cmd.flags.add do |flag|
     flag.name = "dockerfile_path"
     flag.long = "--file"
     flag.short = "-f"
-    flag.default = ""
+    flag.default = "./Dockerfile"
     flag.description = "Name of the Dockerfile (Default is 'PATH/Dockerfile')"
   end
 
@@ -66,11 +74,12 @@ cli = Commander::Command.new do |cmd|
       puts cmd.help
     else
       app = CachedDocker::App.new(
-        options.string["image_name"].split(","),
-        options.string["image_tag"],
-        options.string["build_params"],
-        options.string["cache_stage_target"],
-        options.string["dockerfile_path"],
+        image_names: options.string["image_name"].split(",").map &.strip,
+        image_tag: options.string["image_tag"],
+        push: options.bool["push"],
+        dockerfile_path: options.string["dockerfile_path"],
+        build_params: options.string["build_params"],
+        cache_stage_target: options.string["cache_stage_target"],
       )
 
       if options.bool["print"]

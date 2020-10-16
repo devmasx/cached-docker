@@ -1,14 +1,22 @@
 module CachedDocker::TemplateCommand
+  @push = true
+
   def commands
     [
       "docker pull #{@image_name}",
       pull_cache_steps,
       build_cache_steps,
       "docker build #{@build_params} #{cache_froms} #{image_tags} .",
+      @push ? push_commands : [] of String,
+    ].flatten
+  end
+
+  def push_commands
+    [
       push_cache_steps,
       "docker push #{@image_name}:#{@image_tag}",
       "docker push #{@image_name}",
-    ].flatten
+    ]
   end
 
   def image_tags

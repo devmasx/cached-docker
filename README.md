@@ -8,14 +8,24 @@ The docker multi stages are inferred from the Dockerfile.
 
 Download the binary [releases](./releases)
 
+Linux
+
 ```
-sudo cp cached-docker /bin/cached-docker
+git clone https://github.com/devmasx/cached-docker ~/.cached-docker
+sudo cp ~/.cached-docker/releases/linux/cached-docker /usr/local/bin/cached-docker
+```
+
+Mac OS
+
+```
+git clone https://github.com/devmasx/cached-docker ~/.cached-docker
+sudo cp ~/.cached-docker/releases/macos/cached-docker /usr/bin/cached-docker
 ```
 
 Or build the source code:
 
 ```
-crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
+crystal build src/cached_docker.cr --release --static --no-debug -o /usr/bin/cached-docker
 ```
 
 ## Usage

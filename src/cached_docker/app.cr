@@ -7,14 +7,15 @@ class CachedDocker::App
   include CachedStages
   @cache_stages : Array(Hash(String, String))
   @image_name : String
-  @image_names : Array(String)
+  @push = true
   getter :image_tag, :dockerfile_path, :build_params
 
-  def initialize(@image_names = [""], @image_tag = "", @build_params = "", @cache_stage_target = "", @dockerfile_path = "")
+  def initialize(*,
+                 @image_names = [""], @image_tag = "",
+                 @push = true, @build_params = "",
+                 @cache_stage_target = "", @dockerfile_path = "./Dockerfile")
     @image_name = @image_names[0]
-    if @dockerfile_path == ""
-      @dockerfile_path = "./Dockerfile"
-    else
+    if @dockerfile_path != "./Dockerfile"
       @build_params = "#{@build_params} -f #{@dockerfile_path}"
     end
 
@@ -26,7 +27,7 @@ class CachedDocker::App
     commands.each do |command|
       puts command
     end
-    DockerRunner.new(commands).run
+    DockerRunner.new(commands, @push).run
   end
 
   def multistage?
