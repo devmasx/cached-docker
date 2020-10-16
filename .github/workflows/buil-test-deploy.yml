@@ -34,12 +34,12 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr --release --static --no-debug -o cached-docker
+        run: crystal build src/cached_docker.cr --release --static --no-debug -o releases/linux/cached-docker
 
       - uses: actions/upload-artifact@v1
         with:
           name: cached-docker-ubuntu
-          path: cached-docker
+          path: releases/linux
 
       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
         if: contains(github.ref, 'refs/tags/v')
@@ -63,12 +63,12 @@ jobs:
         run: shards install
 
       - name: Build
-        run: crystal build src/cached_docker.cr -o cached-docker
+        run: crystal build src/cached_docker.cr -o releases/macos/cached-docker
 
       - uses: actions/upload-artifact@v1
         with:
           name: cached-docker-macos
-          path: cached-docker
+          path: releases/macos
 
       - uses: stefanzweifel/git-auto-commit-action@v4.1.1
         if: contains(github.ref, 'refs/tags/v')
