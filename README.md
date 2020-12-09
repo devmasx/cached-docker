@@ -85,4 +85,4 @@ The cached image must be retrieved from a registry, which may add to the time it
 
 ## Contributors
 
-- [Miguel Savignano](https://github.com/devmasx) - creator and maintainer
+- [Miguel Savignano](https://github.com/devmasx) - creator and maintainer.
